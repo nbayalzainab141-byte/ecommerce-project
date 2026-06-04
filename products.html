@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Products – Brand</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="products">
+
+  <!-- Toast & Cart Sidebar -->
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="bi bi-cart3"></i> Shopping Cart</h3>
+      <button class="close-cart" id="closeCartBtn"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">
+        <i class="bi bi-lock-fill"></i> Secure Checkout
+      </button>
+      <button class="continue-shopping">← Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container-fluid">
+      <div class="top-bar-left">
+        <span><i class="bi bi-truck"></i> Free shipping over $50</span>
+        <span><i class="bi bi-shield-check"></i> 30-day returns</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="#">Help</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="bi bi-globe"></i> English</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="bi bi-currency-dollar"></i> USD</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+         <img src="assets/icons/logo.png" alt="Brand"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      </a>
+      <div class="header-search">
+        <div class="search-wrap">
+          <select class="search-category">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home &amp; Kitchen</option>
+          </select>
+          <input type="text" id="headerSearch"
+                 placeholder="Search for products, brands, categories…" />
+          <button class="search-btn"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="#" class="header-action-btn">
+          <i class="bi bi-person-circle"></i><span>Account</span>
+        </a>
+        <button class="header-action-btn" style="position:relative">
+          <i class="bi bi-heart"></i><span>Wishlist</span>
+          <span class="badge-count wishlist-count" style="display:none">0</span>
+        </button>
+        <button class="header-action-btn" id="cartBtn" style="position:relative">
+          <i class="bi bi-cart3"></i><span>Cart</span>
+          <span class="badge-count cart-count" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV BAR -->
+  <nav class="nav-bar">
+    <div class="container-fluid">
+      <div class="all-categories-btn">
+        <i class="bi bi-grid-3x3-gap-fill"></i> All Categories
+      </div>
+      <div class="nav-links">
+        <a href="index.html"><i class="bi bi-house-door-fill"></i> Home</a>
+        <a href="products.html" class="active"><i class="bi bi-phone-fill"></i> Electronics</a>
+        <a href="products.html"><i class="bi bi-bag-fill"></i> Fashion</a>
+        <a href="products.html"><i class="bi bi-house-fill"></i> Home &amp; Kitchen</a>
+        <a href="products.html"><i class="bi bi-camera-fill"></i> Cameras</a>
+        <a href="products.html"><i class="bi bi-lightning-fill"></i> Flash Deals <span class="badge-new">HOT</span></a>
+      </div>
+      <div class="nav-bar-right">
+        <i class="bi bi-telephone-fill"></i><span>1-800-BRAND</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO BANNER -->
+  <div class="page-hero">
+    <div>
+      <h1><i class="bi bi-grid-fill"></i> All Products</h1>
+      <p>Discover our full range of products across all categories</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="bi bi-chevron-right"></i>
+        <span>All Products</span>
+      </div>
+    </div>
+    <div style="text-align:right;color:rgba(255,255,255,0.7);font-size:13px">
+      <div style="font-size:32px;font-weight:900;color:#fff;font-family:'Poppins',sans-serif">16+</div>
+      <div>Products Available</div>
+    </div>
+  </div>
+
+  <!-- SHOP LAYOUT: Filters + Products Grid -->
+  <div class="shop-layout">
+
+    <!-- ======= FILTER SIDEBAR ======= -->
+    <aside class="filter-sidebar">
+      <div class="filter-header">
+        <i class="bi bi-funnel-fill"></i> Filter Products
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-section">
+        <h5>Category <i class="bi bi-chevron-up"></i></h5>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-category" id="cat-electronics" value="Electronics" />
+          <label for="cat-electronics">Electronics <span>(10)</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-category" id="cat-fashion" value="Fashion" />
+          <label for="cat-fashion">Fashion <span>(3)</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-category" id="cat-home" value="Home &amp; Kitchen" />
+          <label for="cat-home">Home &amp; Kitchen <span>(3)</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-category" id="cat-camera" value="Camera" />
+          <label for="cat-camera">Camera <span>(1)</span></label>
+        </div>
+      </div>
+
+      <!-- Price Range -->
+      <div class="filter-section">
+        <h5>Price Range <i class="bi bi-chevron-up"></i></h5>
+        <div class="price-range">
+          <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10" />
+          <div class="price-labels">
+            <span>$0</span>
+            <span>Max: <strong id="maxPriceVal">$1000</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rating Filter -->
+      <div class="filter-section">
+        <h5>Customer Rating <i class="bi bi-chevron-up"></i></h5>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-rating" id="rat-4" value="4" />
+          <label for="rat-4">★★★★☆ &amp; up <span></span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" class="filter-rating" id="rat-3" value="3" />
+          <label for="rat-3">★★★☆☆ &amp; up <span></span></label>
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div class="filter-section">
+        <h5>Availability <i class="bi bi-chevron-up"></i></h5>
+        <div class="filter-option">
+          <input type="checkbox" id="avail-in" checked />
+          <label for="avail-in">In Stock <span></span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="avail-out" />
+          <label for="avail-out">Out of Stock <span></span></label>
+        </div>
+      </div>
+
+      <!-- Color Filter -->
+      <div class="filter-section">
+        <h5>Color <i class="bi bi-chevron-up"></i></h5>
+        <div class="color-options">
+          <div class="color-dot active" style="background:#1d4ed8" title="Blue"></div>
+          <div class="color-dot" style="background:#dc2626" title="Red"></div>
+          <div class="color-dot" style="background:#16a34a" title="Green"></div>
+          <div class="color-dot" style="background:#0f172a" title="Black"></div>
+          <div class="color-dot" style="background:#e2e8f0;border:1px solid #cbd5e1" title="White"></div>
+          <div class="color-dot" style="background:#f59e0b" title="Yellow"></div>
+        </div>
+      </div>
+
+      <!-- Clear Filters -->
+      <button class="clear-filters" onclick="clearAllFilters()">
+        <i class="bi bi-x-circle"></i> Clear All Filters
+      </button>
+    </aside>
+
+    <!-- ======= SHOP MAIN ======= -->
+    <div class="shop-main">
+
+      <!-- Toolbar -->
+      <div class="shop-toolbar">
+        <span class="results-text" id="resultsText">Loading products…</span>
+        <div class="toolbar-right">
+          <!-- Sort -->
+          <select class="sort-select" id="sortSelect">
+            <option value="default">Sort: Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Best Rated</option>
+            <option value="newest">Newest First</option>
+          </select>
+          <!-- View toggle -->
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid" title="Grid View">
+              <i class="bi bi-grid-3x3-gap"></i>
+            </button>
+            <button class="view-btn" data-view="list" title="List View">
+              <i class="bi bi-list-ul"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Filter Tags (visual only) -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" id="activeFilterTags">
+        <span style="background:#eff6ff;color:#1d4ed8;padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:700;border:1px solid #bfdbfe">
+          All Products <i class="bi bi-x" style="cursor:pointer;margin-left:4px"></i>
+        </span>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid cols-4" id="productsContainer">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-wrap" id="paginationWrap">
+        <!-- Rendered by app.js -->
+      </div>
+
+    </div><!-- /.shop-main -->
+  </div><!-- /.shop-layout -->
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Get Exclusive Deals!</h2>
+      <p class="newsletter-sub">Subscribe for the best deals and new arrivals right in your inbox.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Enter your email address…" required />
+        <button type="submit">Subscribe <i class="bi bi-arrow-right"></i></button>
+      </form>
+      <p class="newsletter-note">🔒 No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">
+            <img src="assets/icons/logo.png" alt="Brand"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          </div>
+          
+        </div>
+        <p class="footer-desc">Your one-stop destination for quality products at unbeatable prices.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Products</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> About Us</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Track Order</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Returns</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Electronics</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Fashion</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Home &amp; Kitchen</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Cameras</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul class="footer-contact">
+          <li><i class="bi bi-telephone-fill"></i><span>1-800-BRAND</span></li>
+          <li><i class="bi bi-envelope-fill"></i><span>support@brand.com</span></li>
+          <li><i class="bi bi-chat-dots-fill"></i><span>Live Chat 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 SmartShop. All rights reserved.</span>
+      <div class="footer-payment-icons">
+        <span class="pay-icon">VISA</span>
+        <span class="pay-icon">MC</span>
+        <span class="pay-icon">AMEX</span>
+        <span class="pay-icon">PayPal</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="Back to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

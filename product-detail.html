@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail – Brand</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="detail">
+
+  <!-- Toast & Cart Sidebar -->
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="bi bi-cart3"></i> Shopping Cart</h3>
+      <button class="close-cart" id="closeCartBtn"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button class="checkout-btn"><i class="bi bi-lock-fill"></i> Secure Checkout</button>
+      <button class="continue-shopping">← Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container-fluid">
+      <div class="top-bar-left">
+        <span><i class="bi bi-truck"></i> Free shipping over $50</span>
+        <span><i class="bi bi-shield-check"></i> 30-day returns</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="#">Help</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="bi bi-globe"></i> English</a>
+        <span class="divider">|</span>
+        <a href="#"><i class="bi bi-currency-dollar"></i> USD</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+         <img src="assets/icons/logo.png" alt="Brand"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      </a>
+      <div class="header-search">
+        <div class="search-wrap">
+          <select class="search-category">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home &amp; Kitchen</option>
+          </select>
+          <input type="text" id="headerSearch"
+                 placeholder="Search for products, brands, categories…" />
+          <button class="search-btn"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="#" class="header-action-btn"><i class="bi bi-person-circle"></i><span>Account</span></a>
+        <button class="header-action-btn" style="position:relative">
+          <i class="bi bi-heart"></i><span>Wishlist</span>
+          <span class="badge-count wishlist-count" style="display:none">0</span>
+        </button>
+        <button class="header-action-btn" id="cartBtn" style="position:relative">
+          <i class="bi bi-cart3"></i><span>Cart</span>
+          <span class="badge-count cart-count" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV BAR -->
+  <nav class="nav-bar">
+    <div class="container-fluid">
+      <div class="all-categories-btn"><i class="bi bi-grid-3x3-gap-fill"></i> All Categories</div>
+      <div class="nav-links">
+        <a href="index.html"><i class="bi bi-house-door-fill"></i> Home</a>
+        <a href="products.html"><i class="bi bi-phone-fill"></i> Electronics</a>
+        <a href="products.html"><i class="bi bi-bag-fill"></i> Fashion</a>
+        <a href="products.html"><i class="bi bi-house-fill"></i> Home &amp; Kitchen</a>
+        <a href="products.html"><i class="bi bi-camera-fill"></i> Cameras</a>
+        <a href="products.html"><i class="bi bi-lightning-fill"></i> Flash Deals <span class="badge-new">HOT</span></a>
+      </div>
+      <div class="nav-bar-right">
+        <i class="bi bi-telephone-fill"></i><span>1-800-BRAND</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-wrap">
+    <div class="breadcrumb">
+      <a href="index.html"><i class="bi bi-house-door-fill"></i> Home</a>
+      <i class="bi bi-chevron-right"></i>
+      <a href="products.html">Products</a>
+      <i class="bi bi-chevron-right"></i>
+      <span id="detailCategory">Electronics</span>
+      <i class="bi bi-chevron-right"></i>
+      <span id="breadcrumbTitle" style="color:var(--text-dark);font-weight:600">Product</span>
+    </div>
+  </div>
+
+  <!-- ================================================
+       PRODUCT DETAIL LAYOUT
+       ================================================ -->
+  <div class="detail-layout">
+
+    <!-- ======= LEFT: PRODUCT GALLERY ======= -->
+    <div class="product-gallery">
+      <!-- Main Image -->
+      <div class="main-image-wrap">
+        <img src="assets/product-1.png" alt="Product" id="mainProductImg" />
+        <div class="zoom-hint"><i class="bi bi-zoom-in"></i> Hover to zoom</div>
+      </div>
+      <!--
+        HOW TO USE REAL IMAGES:
+        Replace the div#mainProductImg with:
+        <img src="images/product-1.jpg" alt="Product" id="mainProductImg" />
+        And thumb items too.
+      -->
+
+      <!-- Thumbnail Row -->
+      <div class="thumb-item active" id="thumbMain">
+    <img id="thumbImg" src="" alt="">
+</div>
+    </div>
+
+    <!-- ======= RIGHT: PRODUCT INFO ======= -->
+    <div class="product-info-panel">
+
+      <!-- Category + Title -->
+      <div class="detail-category" id="detailCategory">Electronics</div>
+      <h1 class="detail-title" id="detailTitle">Loading product…</h1>
+
+      <!-- Meta: Rating + Stock + SKU -->
+      <div class="detail-meta">
+        <div class="detail-rating">
+          <span class="stars" id="detailStars">★★★★★</span>
+          <strong class="rating-score" id="detailRatingScore">4.7</strong>
+          <span class="rating-count" id="detailRatingCount">(342 reviews)</span>
+        </div>
+        <span class="in-stock-badge" id="stockBadge">
+          <i class="bi bi-check-circle-fill"></i> In Stock
+        </span>
+        <span class="sku-text">SKU: #SS-001</span>
+      </div>
+
+      <!-- Price -->
+      <div class="detail-price-wrap">
+        <span class="detail-price" id="detailPrice">$89.99</span>
+        <span class="detail-original" id="detailOriginal">$149.99</span>
+        <span class="detail-discount-badge" id="detailDiscount">40% OFF</span>
+      </div>
+
+      <!-- Product Description -->
+      <p id="detailDescription"
+         style="font-size:14px;color:var(--text-mid);line-height:1.8;margin-bottom:20px">
+        Premium product description loading…
+      </p>
+
+      <!-- Key Features -->
+      <ul class="product-features">
+        <li><i class="bi bi-check-circle-fill"></i> Premium build quality with durable materials</li>
+        <li><i class="bi bi-check-circle-fill"></i> Advanced technology for superior performance</li>
+        <li><i class="bi bi-check-circle-fill"></i> Ergonomic design for maximum comfort</li>
+        <li><i class="bi bi-check-circle-fill"></i> Includes 1-year manufacturer warranty</li>
+        <li><i class="bi bi-check-circle-fill"></i> Compatible with all major platforms</li>
+      </ul>
+
+      <!-- Color Options -->
+      <div class="option-group">
+        <div class="option-label">
+          Color: <span>Midnight Black</span>
+        </div>
+        <div class="color-options">
+          <div class="color-dot active" style="background:#0f172a" title="Midnight Black"></div>
+          <div class="color-dot" style="background:#1d4ed8" title="Navy Blue"></div>
+          <div class="color-dot" style="background:#dc2626" title="Cardinal Red"></div>
+          <div class="color-dot" style="background:#e2e8f0;border:1px solid #cbd5e1" title="Pearl White"></div>
+        </div>
+      </div>
+
+      <!-- Size Options -->
+      <div class="option-group">
+        <div class="option-label">Size: <span>One Size</span></div>
+        <div class="size-options">
+          <button class="size-btn active">One Size</button>
+          <button class="size-btn">S</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn unavailable">XL</button>
+        </div>
+      </div>
+
+      <!-- Quantity -->
+      <div class="option-group">
+        <div class="option-label">Quantity:</div>
+        <div class="qty-selector">
+          <button id="qtyMinus">−</button>
+          <input type="number" class="qty-display" id="qtyDisplay" value="1" min="1" max="99" readonly />
+          <button id="qtyPlus">+</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="detail-actions">
+        <button class="btn-add-cart" id="detailAddToCart">
+          <i class="bi bi-cart-plus"></i> Add to Cart
+        </button>
+        <button class="btn-buy-now">
+          <i class="bi bi-lightning-fill"></i> Buy Now
+        </button>
+        <button class="btn-wishlist-detail" id="detailWishlist" data-wishlist="1" title="Add to Wishlist">
+          <i class="bi bi-heart"></i>
+        </button>
+      </div>
+
+      <!-- Delivery Info -->
+      <div class="delivery-strip">
+        <div class="delivery-item">
+          <i class="bi bi-truck"></i>
+          <div>
+            <strong>Free Delivery</strong>
+            <span>Orders over $50</span>
+          </div>
+        </div>
+        <div class="delivery-item">
+          <i class="bi bi-arrow-repeat"></i>
+          <div>
+            <strong>Easy Returns</strong>
+            <span>30 days policy</span>
+          </div>
+        </div>
+        <div class="delivery-item">
+          <i class="bi bi-shield-check"></i>
+          <div>
+            <strong>1 Year Warranty</strong>
+            <span>Full coverage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share -->
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-mid)">
+        <span><strong>Share:</strong></span>
+        <a href="#" style="color:#1877f2;font-size:18px"><i class="bi bi-facebook"></i></a>
+        <a href="#" style="color:#1da1f2;font-size:18px"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" style="color:#c13584;font-size:18px"><i class="bi bi-instagram"></i></a>
+        <a href="#" style="color:#0a66c2;font-size:18px"><i class="bi bi-linkedin"></i></a>
+        <button onclick="navigator.clipboard.writeText(window.location.href); showToast('Link copied!','info')"
+                style="margin-left:auto;border:1.5px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--text-mid);background:var(--bg)">
+          <i class="bi bi-link-45deg"></i> Copy Link
+        </button>
+      </div>
+
+    </div><!-- /.product-info-panel -->
+  </div><!-- /.detail-layout -->
+
+  <!-- ================================================
+       TABS: Description / Specs / Reviews
+       ================================================ -->
+  <div class="detail-tabs">
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-target="tabDescription">Description</button>
+      <button class="tab-btn" data-target="tabSpecs">Specifications</button>
+      <button class="tab-btn" data-target="tabReviews">
+        Reviews <span id="tabReviewBadge"
+                      style="background:var(--primary);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;margin-left:5px">0</span>
+      </button>
+      <button class="tab-btn" data-target="tabShipping">Shipping &amp; Returns</button>
+    </div>
+
+    <!-- Description Tab -->
+    <div class="tab-pane active" id="tabDescription">
+      <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;margin-bottom:16px">
+        Product Description
+      </h3>
+      <p id="descriptionFull"
+         style="font-size:14.5px;color:var(--text-mid);line-height:1.9;margin-bottom:18px">
+        This premium product is designed with both performance and comfort in mind.
+        Whether you're a professional or an enthusiast, you'll find the perfect balance of
+        quality, durability, and functionality. Every component has been carefully selected
+        and tested to ensure the best possible experience.
+      </p>
+      <h4 style="font-size:16px;font-weight:800;margin-bottom:12px">What's in the Box</h4>
+      <ul style="list-style:none;padding:0">
+        <li style="padding:6px 0;font-size:14px;color:var(--text-mid);border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:8px">
+          <i class="bi bi-check2" style="color:var(--success)"></i> 1x Main Product Unit
+        </li>
+        <li style="padding:6px 0;font-size:14px;color:var(--text-mid);border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:8px">
+          <i class="bi bi-check2" style="color:var(--success)"></i> 1x USB-C Charging Cable (1.5m)
+        </li>
+        <li style="padding:6px 0;font-size:14px;color:var(--text-mid);border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:8px">
+          <i class="bi bi-check2" style="color:var(--success)"></i> 1x Quick Start Guide
+        </li>
+        <li style="padding:6px 0;font-size:14px;color:var(--text-mid);border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:8px">
+          <i class="bi bi-check2" style="color:var(--success)"></i> 1x Warranty Card
+        </li>
+        <li style="padding:6px 0;font-size:14px;color:var(--text-mid);display:flex;align-items:center;gap:8px">
+          <i class="bi bi-check2" style="color:var(--success)"></i> 1x Premium Carrying Pouch
+        </li>
+      </ul>
+    </div>
+
+    <!-- Specifications Tab -->
+    <div class="tab-pane" id="tabSpecs">
+      <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;margin-bottom:16px">
+        Technical Specifications
+      </h3>
+      <table class="spec-table">
+        <tbody id="specsTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Reviews Tab -->
+    <div class="tab-pane" id="tabReviews">
+      <!-- Rating Summary -->
+      <div class="reviews-summary">
+        <div class="reviews-score">
+          <div class="big-score">4.7</div>
+          <div class="stars">★★★★★</div>
+          <div class="total">342 reviews</div>
+        </div>
+        <div class="rating-bars">
+          <div class="rating-bar-row">
+            <span style="min-width:20px">5★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            <span>72%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span style="min-width:20px">4★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+            <span>18%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span style="min-width:20px">3★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%;background:#f59e0b"></div></div>
+            <span>6%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span style="min-width:20px">2★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:2%;background:#f59e0b"></div></div>
+            <span>2%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span style="min-width:20px">1★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--danger)"></div></div>
+            <span>2%</span>
+          </div>
+        </div>
+        <div>
+          <button style="background:var(--primary);color:#fff;padding:11px 22px;border-radius:8px;font-weight:800;font-size:14px;display:flex;align-items:center;gap:7px">
+            <i class="bi bi-pencil-fill"></i> Write a Review
+          </button>
+        </div>
+      </div>
+
+      <!-- Review Cards -->
+      <div class="review-card">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">AK</div>
+          <div>
+            <div class="reviewer-name">Ahmed Khan</div>
+            <div class="reviewer-date">⭐⭐⭐⭐⭐ · January 15, 2024 · <span style="color:var(--success);font-size:12px"><i class="bi bi-check-circle-fill"></i> Verified Purchase</span></div>
+          </div>
+        </div>
+        <p class="review-text">
+          Absolutely love this product! The quality exceeded my expectations. Build quality is superb,
+          performance is outstanding. Delivery was fast and packaging was excellent. Highly recommend
+          to anyone looking for a reliable purchase. Will definitely buy again from SmartShop!
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar" style="background:var(--accent)">SA</div>
+          <div>
+            <div class="reviewer-name">Sara Ali</div>
+            <div class="reviewer-date">⭐⭐⭐⭐⭐ · February 3, 2024 · <span style="color:var(--success);font-size:12px"><i class="bi bi-check-circle-fill"></i> Verified Purchase</span></div>
+          </div>
+        </div>
+        <p class="review-text">
+          Great value for money. I was skeptical at first but after using it for a few weeks,
+          I can say it's worth every penny. The performance is consistent and the design is sleek.
+          Customer support was also very helpful when I had questions.
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar" style="background:var(--success)">MR</div>
+          <div>
+            <div class="reviewer-name">Muhammad Raza</div>
+            <div class="reviewer-date">⭐⭐⭐⭐☆ · March 12, 2024 · <span style="color:var(--success);font-size:12px"><i class="bi bi-check-circle-fill"></i> Verified Purchase</span></div>
+          </div>
+        </div>
+        <p class="review-text">
+          Very good product overall. Minor setup took a few minutes but after that it works
+          perfectly. The battery life is impressive. Taking off one star because the accessories
+          could be better, but the main product itself is excellent.
+        </p>
+      </div>
+    </div>
+
+    <!-- Shipping Tab -->
+    <div class="tab-pane" id="tabShipping">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div>
+          <h4 style="font-weight:800;margin-bottom:14px;font-size:17px">
+            <i class="bi bi-truck" style="color:var(--primary)"></i> Shipping Information
+          </h4>
+          <table style="width:100%;border-collapse:collapse;font-size:14px">
+            <thead><tr style="background:var(--bg)">
+              <th style="padding:10px;text-align:left;border:1px solid var(--border)">Method</th>
+              <th style="padding:10px;text-align:left;border:1px solid var(--border)">Delivery Time</th>
+              <th style="padding:10px;text-align:left;border:1px solid var(--border)">Cost</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px;border:1px solid var(--border)">Standard</td>
+                <td style="padding:10px;border:1px solid var(--border)">5–7 Business Days</td>
+                <td style="padding:10px;border:1px solid var(--border);color:var(--success);font-weight:700">Free (over $50)</td>
+              </tr>
+              <tr>
+                <td style="padding:10px;border:1px solid var(--border)">Express</td>
+                <td style="padding:10px;border:1px solid var(--border)">2–3 Business Days</td>
+                <td style="padding:10px;border:1px solid var(--border)">$9.99</td>
+              </tr>
+              <tr>
+                <td style="padding:10px;border:1px solid var(--border)">Overnight</td>
+                <td style="padding:10px;border:1px solid var(--border)">Next Business Day</td>
+                <td style="padding:10px;border:1px solid var(--border)">$24.99</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4 style="font-weight:800;margin-bottom:14px;font-size:17px">
+            <i class="bi bi-arrow-repeat" style="color:var(--accent)"></i> Returns Policy
+          </h4>
+          <ul style="list-style:none;padding:0;font-size:14px;color:var(--text-mid)">
+            <li style="padding:8px 0;border-bottom:1px solid var(--border-light);display:flex;align-items:flex-start;gap:8px">
+              <i class="bi bi-check2-circle" style="color:var(--success);margin-top:2px"></i>
+              30-day hassle-free return policy
+            </li>
+            <li style="padding:8px 0;border-bottom:1px solid var(--border-light);display:flex;align-items:flex-start;gap:8px">
+              <i class="bi bi-check2-circle" style="color:var(--success);margin-top:2px"></i>
+              Item must be unused and in original packaging
+            </li>
+            <li style="padding:8px 0;border-bottom:1px solid var(--border-light);display:flex;align-items:flex-start;gap:8px">
+              <i class="bi bi-check2-circle" style="color:var(--success);margin-top:2px"></i>
+              Free return shipping on defective items
+            </li>
+            <li style="padding:8px 0;display:flex;align-items:flex-start;gap:8px">
+              <i class="bi bi-check2-circle" style="color:var(--success);margin-top:2px"></i>
+              Refund processed within 5–7 business days
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       RELATED PRODUCTS
+       ================================================ -->
+  <div class="related-section">
+    <div class="section-header">
+      <h2 class="section-title">You Might Also Like</h2>
+      <a href="products.html" class="view-all-btn">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="products-grid cols-4" id="relatedProducts">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Get Exclusive Deals!</h2>
+      <p class="newsletter-sub">Subscribe for the best deals and new arrivals.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Enter your email address…" required />
+        <button type="submit">Subscribe <i class="bi bi-arrow-right"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">
+            <img src="assets/icons/logo.png" alt="Brand"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          </div>
+          
+        </div>
+        <p class="footer-desc">Your one-stop destination for quality products at unbeatable prices.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Products</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> About Us</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Track Order</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Returns</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Electronics</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Fashion</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Home &amp; Kitchen</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-right"></i> Cameras</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul class="footer-contact">
+          <li><i class="bi bi-telephone-fill"></i><span>1-800-BRAND</span></li>
+          <li><i class="bi bi-envelope-fill"></i><span>support@brand.com</span></li>
+          <li><i class="bi bi-chat-dots-fill"></i><span>Live Chat 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 SmartShop. All rights reserved.</span>
+      <div class="footer-payment-icons">
+        <span class="pay-icon">VISA</span>
+        <span class="pay-icon">MC</span>
+        <span class="pay-icon">AMEX</span>
+        <span class="pay-icon">PayPal</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="Back to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

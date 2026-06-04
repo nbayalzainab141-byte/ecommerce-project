@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand – Best Deals on Electronics, Fashion & More</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="home">
+
+<!-- Toast & Cart Sidebar -->
+<div class="toast-container" id="toastContainer"></div>
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="bi bi-cart3"></i> Shopping Cart</h3>
+    <button class="close-cart" id="closeCartBtn"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+    <button class="checkout-btn"><i class="bi bi-lock-fill"></i> Secure Checkout</button>
+    <button class="continue-shopping">← Continue Shopping</button>
+  </div>
+</aside>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container-fluid">
+    <div class="top-bar-left">
+      <span><i class="bi bi-truck"></i> Free shipping on orders over $50</span>
+      <span><i class="bi bi-shield-check"></i> 30-day returns</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="#">English</a><span class="divider">|</span>
+      <a href="#">Login</a><span class="divider">|</span>
+      <a href="#">Register</a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN HEADER -->
+<header class="main-header">
+  <div class="header-inner">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo.png" alt="Brand"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      </a>
+
+    <!-- SEARCH -->
+    <div class="header-search">
+      <div class="search-wrap">
+        <input type="text" id="headerSearch" placeholder="Search..." />
+        <select class="search-category">
+          <option>All category</option>
+          <option>Electronics</option>
+          <option>Fashion</option>
+          <option>Home & Kitchen</option>
+          <option>Cameras</option>
+        </select>
+        <button class="search-btn">Search</button>
+      </div>
+    </div>
+
+    <!-- HEADER ICONS -->
+    <div class="header-actions">
+
+      <a href="#" class="header-action-btn">
+        <i class="bi bi-person-circle hicon"></i>
+        <span class="label">Profile</span>
+      </a>
+
+      <a href="#" class="header-action-btn">
+        <i class="bi bi-chat-dots hicon"></i>
+        <span class="label">Message</span>
+      </a>
+
+      <a href="#" class="header-action-btn">
+        <i class="bi bi-box-seam hicon"></i>
+        <span class="label">Orders</span>
+      </a>
+
+      <button class="header-action-btn" id="cartBtn" style="position:relative;">
+        <i class="bi bi-cart3 hicon"></i>
+        <span class="label">My cart</span>
+        <span class="badge-count cart-count" style="display:none;">0</span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- NAV BAR -->
+<nav class="nav-bar">
+  <div class="container-fluid">
+    <div class="all-categories-btn">
+      <i class="bi bi-list"></i> All category
+    </div>
+    <div class="nav-links">
+      <a href="products.html">Hot offers</a>
+      <a href="products.html">Gift boxes</a>
+      <a href="products.html">Projects</a>
+      <a href="#">Menu item</a>
+      <a href="#">Help <i class="bi bi-chevron-down" style="font-size:10px;"></i></a>
+    </div>
+    <div class="nav-bar-right">
+      <span>English, USD <i class="bi bi-chevron-down" style="font-size:10px;"></i></span>
+      <span style="margin-left:14px;">Ship to 🇩🇪 <i class="bi bi-chevron-down" style="font-size:10px;"></i></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================
+     HERO SECTION
+     ================================================ -->
+<div class="hero-section">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="categories-sidebar">
+    <ul class="cat-list">
+      <li><a href="products.html"><span class="cat-label">Automobiles</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Clothes and wear</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Home interiors</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Computer and tech</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Tools, equipments</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Sports and outdoor</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Animal and pets</span></a></li>
+      <li><a href="products.html"><span class="cat-label">Machinery tools</span></a></li>
+      <li><a href="products.html"><span class="cat-label">More category</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+
+    <!-- TEXT on top -->
+    <div class="hero-text">
+      <p class="hero-badge">Latest trending</p>
+      <h1 class="hero-title">Electronic<br>items</h1>
+      <a href="products.html" class="hero-cta">Learn more</a>
+    </div>
+
+     
+    <!-- ============================================
+         FULL COVER IMAGE
+         ============================================ -->
+    <div class="hero-image">
+      <img src="assets/images/hero-image.png" alt="Electronic Items"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="hero-right">
+    <!-- User greeting -->
+    <div class="login-box">
+      <div class="user-greet">
+        <div class="user-avatar-icon"><i class="bi bi-person-circle"></i></div>
+        <div class="user-greet-text">
+          <strong>Hi, user</strong>
+          <span>let's get started</span>
+        </div>
+      </div>
+      <button class="join-btn" onclick="showToast('Register coming soon!','info')">Join now</button>
+      <button class="login-btn-outline" onclick="showToast('Login coming soon!','info')">Log in</button>
+    </div>
+    <!-- Orange box -->
+    <div class="mini-banner mini-banner-orange">
+      <div class="mb-title">Get US $10 off<br>with a new<br>supplier</div>
+    </div>
+    <!-- Teal box -->
+    <div class="mini-banner mini-banner-teal">
+      <div class="mb-title">Send quotes with<br>supplier<br>preferences</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FEATURES BAR -->
+<div class="features-bar">
+  <div class="container-fluid">
+    <div class="feature-item"><i class="bi bi-truck feat-icon"></i><div class="feat-text"><strong>Free Shipping</strong><span>Orders over $50</span></div></div>
+    <div class="feature-divider"></div>
+    <div class="feature-item"><i class="bi bi-arrow-repeat feat-icon"></i><div class="feat-text"><strong>Easy Returns</strong><span>30-day return policy</span></div></div>
+    <div class="feature-divider"></div>
+    <div class="feature-item"><i class="bi bi-shield-check feat-icon"></i><div class="feat-text"><strong>Secure Payment</strong><span>100% protected</span></div></div>
+    <div class="feature-divider"></div>
+    <div class="feature-item"><i class="bi bi-headset feat-icon"></i><div class="feat-text"><strong>24/7 Support</strong><span>Dedicated help center</span></div></div>
+    <div class="feature-divider"></div>
+    <div class="feature-item"><i class="bi bi-award feat-icon"></i><div class="feat-text"><strong>Best Prices</strong><span>Price match guarantee</span></div></div>
+  </div>
+</div>
+
+<!-- TRENDING PRODUCTS -->
+<div class="section-wrap">
+  <div class="section-header">
+    <h2 class="section-title">Trending Products</h2>
+    <div class="category-tabs">
+      <button class="cat-tab active" data-filter="all">All</button>
+      <button class="cat-tab" data-filter="Electronics">Electronics</button>
+      <button class="cat-tab" data-filter="Fashion">Fashion</button>
+      <button class="cat-tab" data-filter="Home &amp; Kitchen">Home</button>
+    </div>
+    <a href="products.html" class="view-all-btn">View All <i class="bi bi-arrow-right"></i></a>
+  </div>
+  <div class="products-grid" id="trendingGrid"></div>
+</div>
+
+<!-- PROMO BANNERS -->
+<div class="section-wrap">
+  <div class="promo-grid">
+    <div class="promo-banner promo-banner-1"><div class="promo-text"><div class="promo-label">Mega Deal</div><div class="promo-title">Up to 50% Off<br>Laptops</div><a href="products.html" class="promo-cta">Shop Now →</a></div><span class="promo-icon">💻</span></div>
+    <div class="promo-banner promo-banner-2"><div class="promo-text"><div class="promo-label">Flash Sale</div><div class="promo-title">Headphones<br>from $29.99</div><a href="products.html" class="promo-cta">Grab Deal →</a></div><span class="promo-icon">🎧</span></div>
+    <div class="promo-banner promo-banner-3"><div class="promo-text"><div class="promo-label">New In</div><div class="promo-title">Smart Home<br>Essentials</div><a href="products.html" class="promo-cta">Explore →</a></div><span class="promo-icon">🏠</span></div>
+  </div>
+</div>
+
+<!-- NEW ARRIVALS -->
+<div class="section-wrap">
+  <div class="section-header">
+    <h2 class="section-title">New Arrivals</h2>
+    <a href="products.html" class="view-all-btn">View All <i class="bi bi-arrow-right"></i></a>
+  </div>
+  <div class="products-grid" id="newArrivalsGrid"></div>
+</div>
+
+<!-- WIDE PROMO -->
+<div class="section-wrap">
+  <div class="wide-promo">
+    <div class="wide-promo-card wide-promo-card-1"><div><div class="wp-label">Limited Time</div><div class="wp-title">Smartphone<br>Mega Sale</div><a href="products.html" class="wp-cta">Shop Now →</a></div><span class="wp-img">📱</span></div>
+    <div class="wide-promo-card wide-promo-card-2"><div><div class="wp-label">Exclusive</div><div class="wp-title">Gaming Gear<br>Deals</div><a href="products.html" class="wp-cta">Grab Deals →</a></div><span class="wp-img">🎮</span></div>
+  </div>
+</div>
+
+<!-- BEST DEALS -->
+<div class="section-wrap">
+  <div class="section-header">
+    <h2 class="section-title">Best Deals</h2>
+    <a href="products.html" class="view-all-btn">View All <i class="bi bi-arrow-right"></i></a>
+  </div>
+  <div class="products-grid" id="dealsGrid"></div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-title">Get Exclusive Deals!</h2>
+    <p class="newsletter-sub">Subscribe and be first to know about sales and new products.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="Enter your email address..." required />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <p class="newsletter-note">🔒 No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">
+        <img src="assets/icons/logo.png" alt="Brand"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      </div>
+      <p class="footer-desc">Your one-stop destination for electronics, fashion, home essentials and more.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#"><i class="bi bi-chevron-right"></i> About Us</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Sell on Brand</a></li></ul></div>
+    <div class="footer-col"><h4>Customer Service</h4><ul><li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Track Order</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Returns</a></li><li><a href="#"><i class="bi bi-chevron-right"></i> Shipping Info</a></li></ul></div>
+    <div class="footer-col"><h4>Categories</h4><ul><li><a href="products.html"><i class="bi bi-chevron-right"></i> Electronics</a></li><li><a href="products.html"><i class="bi bi-chevron-right"></i> Fashion</a></li><li><a href="products.html"><i class="bi bi-chevron-right"></i> Home & Kitchen</a></li><li><a href="products.html"><i class="bi bi-chevron-right"></i> Cameras</a></li></ul></div>
+    <div class="footer-col"><h4>Contact Us</h4><ul class="footer-contact"><li><i class="bi bi-telephone-fill"></i><span>1-800-BRAND</span></li><li><i class="bi bi-envelope-fill"></i><span>support@brand.com</span></li><li><i class="bi bi-chat-dots-fill"></i><span>Live Chat 24/7</span></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Brand. All rights reserved.</span>
+    <div class="footer-payment-icons"><span class="pay-icon">VISA</span><span class="pay-icon">MC</span><span class="pay-icon">AMEX</span><span class="pay-icon">PayPal</span></div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop"><i class="bi bi-chevron-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
