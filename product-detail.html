@@ -111,7 +111,7 @@
       <i class="bi bi-chevron-right"></i>
       <a href="products.html">Products</a>
       <i class="bi bi-chevron-right"></i>
-      <span id="detailCategory">Electronics</span>
+      <span id="breadcrumbCategory">Electronics</span>
       <i class="bi bi-chevron-right"></i>
       <span id="breadcrumbTitle" style="color:var(--text-dark);font-weight:600">Product</span>
     </div>
@@ -131,9 +131,11 @@
       </div>
 
       <!-- Thumbnail Row -->
-      <div class="thumb-item active" id="thumbMain">
-    <img id="thumbImg" src="" alt="">
-</div>
+      <div class="thumb-row">
+        <div class="thumb-item active" id="thumbMain">
+          <img id="thumbImg" src="" alt="Product thumbnail">
+        </div>
+      </div>
     </div>
 
     <!-- ======= RIGHT: PRODUCT INFO ======= -->
@@ -252,14 +254,13 @@
       </div>
 
       <!-- Share -->
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-mid)">
+      <div class="share-row">
         <span><strong>Share:</strong></span>
         <a href="#" style="color:#1877f2;font-size:18px"><i class="bi bi-facebook"></i></a>
         <a href="#" style="color:#1da1f2;font-size:18px"><i class="bi bi-twitter-x"></i></a>
         <a href="#" style="color:#c13584;font-size:18px"><i class="bi bi-instagram"></i></a>
         <a href="#" style="color:#0a66c2;font-size:18px"><i class="bi bi-linkedin"></i></a>
-        <button onclick="navigator.clipboard.writeText(window.location.href); showToast('Link copied!','info')"
-                style="margin-left:auto;border:1.5px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--text-mid);background:var(--bg)">
+        <button class="copy-link-btn" onclick="navigator.clipboard.writeText(window.location.href); showToast('Link copied!','info')">
           <i class="bi bi-link-45deg"></i> Copy Link
         </button>
       </div>
@@ -415,7 +416,7 @@
 
     <!-- Shipping Tab -->
     <div class="tab-pane" id="tabShipping">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div class="shipping-grid">
         <div>
           <h4 style="font-weight:800;margin-bottom:14px;font-size:17px">
             <i class="bi bi-truck" style="color:var(--primary)"></i> Shipping Information
@@ -553,7 +554,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2024 SmartShop. All rights reserved.</span>
+      <span>© 2024 Brand. All rights reserved.</span>
       <div class="footer-payment-icons">
         <span class="pay-icon">VISA</span>
         <span class="pay-icon">MC</span>
