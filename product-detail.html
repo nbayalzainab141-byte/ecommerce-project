@@ -125,16 +125,22 @@
     <!-- ======= LEFT: PRODUCT GALLERY ======= -->
     <div class="product-gallery">
       <!-- Main Image -->
-      <div class="main-image-wrap">
+      <div class="main-image-wrap" id="mainImageWrap">
         <img src="assets/product-1.png" alt="Product" id="mainProductImg" />
+        <div class="zoom-lens" id="zoomLens"></div>
         <div class="zoom-hint"><i class="bi bi-zoom-in"></i> Hover to zoom</div>
       </div>
 
       <!-- Thumbnail Row -->
-      <div class="thumb-row">
-        <div class="thumb-item active" id="thumbMain">
-          <img id="thumbImg" src="" alt="Product thumbnail">
-        </div>
+      <div class="thumb-row" id="thumbRow">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <div class="gallery-tools">
+        <button type="button" id="resetGalleryBtn">
+          <i class="bi bi-arrow-counterclockwise"></i> Reset view
+        </button>
+        <span><i class="bi bi-images"></i> Multiple gallery views</span>
       </div>
     </div>
 

@@ -525,6 +525,101 @@ function closeQuickView() {
   document.body.style.overflow = '';
 }
 
+function getProductGalleryImages(product) {
+  var basePath = 'assets/product-' + product.id;
+  return [
+    { src: product.image || (basePath + '.png'), label: 'Main view', required: true },
+    { src: basePath + '-side.png', label: 'Side view' },
+    { src: basePath + '-detail.png', label: 'Detail view' },
+    { src: basePath + '-box.png', label: 'Box view' }
+  ];
+}
+
+function handleGalleryImageError(img, required) {
+  if (required) {
+    img.style.display = 'none';
+    return;
+  }
+
+  var item = img.closest('.thumb-item');
+  var row = item ? item.parentNode : null;
+  if (!item || !row) return;
+
+  var wasActive = item.classList.contains('active');
+  item.remove();
+
+  if (wasActive) {
+    var firstThumb = row.querySelector('.thumb-item');
+    if (firstThumb) firstThumb.click();
+  }
+}
+
+function initProductGallery(product) {
+  var mainImg = document.getElementById('mainProductImg');
+  var mainWrap = document.getElementById('mainImageWrap');
+  var thumbRow = document.getElementById('thumbRow');
+  var resetBtn = document.getElementById('resetGalleryBtn');
+  var zoomLens = document.getElementById('zoomLens');
+  if (!mainImg || !thumbRow) return;
+
+  var galleryImages = getProductGalleryImages(product);
+
+  function setImage(image, index) {
+    if (!image) return;
+    mainImg.src = image.src;
+    mainImg.alt = product.name + ' - ' + image.label;
+    if (zoomLens) zoomLens.style.backgroundImage = 'url("' + image.src + '")';
+    thumbRow.querySelectorAll('.thumb-item').forEach(function(btn, btnIndex) {
+      btn.classList.toggle('active', btnIndex === index);
+    });
+  }
+
+  thumbRow.innerHTML = galleryImages.map(function(image, index) {
+    return '<button type="button" class="thumb-item ' + (index === 0 ? 'active' : '') + '" data-gallery-index="' + index + '" title="' + image.label + '">' +
+      '<img src="' + image.src + '" alt="' + product.name + ' ' + image.label + '" onerror="handleGalleryImageError(this, ' + (image.required ? 'true' : 'false') + ')">' +
+      '<span>' + image.label + '</span>' +
+    '</button>';
+  }).join('');
+
+  thumbRow.querySelectorAll('.thumb-item').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var index = parseInt(btn.dataset.galleryIndex);
+      setImage(galleryImages[index], index);
+    });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      setImage(galleryImages[0], 0);
+    });
+  }
+
+  if (mainWrap && zoomLens) {
+    zoomLens.style.backgroundImage = 'url("' + galleryImages[0].src + '")';
+
+    mainWrap.addEventListener('mousemove', function(e) {
+      var rect = mainWrap.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      x = Math.max(0, Math.min(100, x));
+      y = Math.max(0, Math.min(100, y));
+      zoomLens.style.left = x + '%';
+      zoomLens.style.top = y + '%';
+      zoomLens.style.backgroundPosition = x + '% ' + y + '%';
+    });
+
+    mainWrap.addEventListener('mouseenter', function() {
+      zoomLens.classList.add('active');
+    });
+
+    mainWrap.addEventListener('mouseleave', function() {
+      zoomLens.classList.remove('active');
+    });
+  }
+
+  setImage(galleryImages[0], 0);
+}
+
 /* ============================================================
    HOME PAGE - RENDER PRODUCTS
    ============================================================ */
@@ -939,7 +1034,7 @@ function initProductDetailPage() {
   if (mainImg) {
     mainImg.src = product.image;
     mainImg.alt = product.name;
-}
+  }
 
   
 
@@ -1039,16 +1134,7 @@ function initProductDetailPage() {
     });
   });
 
-  // Thumbnail row
-const thumbItem = document.querySelector('.thumb-item');
-
-if (thumbItem) {
-  const img = thumbItem.querySelector('img');
-  img.src = product.image;
-  thumbItem.dataset.img = product.image;
-}
-
-
+  initProductGallery(product);
 
   // Related products
   var relContainer = document.getElementById('relatedProducts');
